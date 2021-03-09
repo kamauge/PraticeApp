@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.regera.aad.data.User
+import com.regera.aad.databinding.CustomUserBinding
+import com.regera.aad.databinding.FragmentListUsersBinding
 
 class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -13,12 +15,23 @@ class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
 
-        return UserViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.custom_user, parent, false))    }
+        return UserViewHolder(CustomUserBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
         val currentItem = userList[position]
 
-      //  holder.itemView.
+        holder.binding.idTxt.text = currentItem.id.toString()
+        holder.binding.firstNameTxt.text = currentItem.firstName
+        holder.binding.lastNameTxt.text = currentItem.lastName
+        holder.binding.ageTxt.text = currentItem.age.toString()
+
+
+    }
+
+    fun setData(user: List<User>){
+        this.userList = user
+        notifyDataSetChanged()
 
     }
 
@@ -26,8 +39,8 @@ class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
       return userList.size
     }
 
-    class UserViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+    class UserViewHolder(val binding : CustomUserBinding) : RecyclerView.ViewHolder(binding.root)
 
-    }
+
 
 }
