@@ -1,4 +1,4 @@
-package com.example.practiceapp
+package com.regera.aad
 
 import org.junit.Test
 
