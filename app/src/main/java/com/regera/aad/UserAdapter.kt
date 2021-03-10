@@ -3,10 +3,12 @@ package com.regera.aad
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.regera.aad.data.User
 import com.regera.aad.databinding.CustomUserBinding
 import com.regera.aad.databinding.FragmentListUsersBinding
+import com.regera.aad.utils.MyDiffUtil
 
 class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
@@ -29,9 +31,13 @@ class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     }
 
-    fun setData(user: List<User>){
-        this.userList = user
-        notifyDataSetChanged()
+    fun setData(newList: List<User>){
+        //this.userList = user
+        val diffUtil = MyDiffUtil(userList,newList)
+        val diffResults = DiffUtil.calculateDiff(diffUtil)
+        userList = newList
+        diffResults.dispatchUpdatesTo(this)
+        //notifyDataSetChanged()
 
     }
 
