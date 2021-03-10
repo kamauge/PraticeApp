@@ -3,6 +3,7 @@ package com.regera.aad
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.regera.aad.data.User
@@ -28,16 +29,21 @@ class UserAdapter:RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         holder.binding.lastNameTxt.text = currentItem.lastName
         holder.binding.ageTxt.text = currentItem.age.toString()
 
+        holder.binding.rowLayout.setOnClickListener {
+            val action = ListUsersFragmentDirections.actionListUsersFragment2ToUpdateUserFragment(currentItem)
+            holder.itemView.findNavController().navigate(action)
+        }
+
+
+
 
     }
 
     fun setData(newList: List<User>){
-        //this.userList = user
         val diffUtil = MyDiffUtil(userList,newList)
         val diffResults = DiffUtil.calculateDiff(diffUtil)
         userList = newList
         diffResults.dispatchUpdatesTo(this)
-        //notifyDataSetChanged()
 
     }
 

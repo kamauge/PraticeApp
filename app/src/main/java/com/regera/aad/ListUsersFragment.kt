@@ -35,6 +35,8 @@ class ListUsersFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
+
+
         //user viewmodel
         userViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         userViewModel.readAllData.observe(viewLifecycleOwner, Observer { user -> adapter.setData(user)
