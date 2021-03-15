@@ -5,7 +5,7 @@ import com.regera.aad.data.services.RetrofitInstance
 import retrofit2.Response
 
 class AlbumRepository {
-    suspend fun getAlbums(): Response<Albums> {
-        return RetrofitInstance.api.getAlbums()
+    suspend fun getAlbum(): Response<Albums> {
+        return RetrofitInstance.api.getAlbum()
     }
 }

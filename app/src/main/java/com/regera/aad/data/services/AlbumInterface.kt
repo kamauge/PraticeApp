@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface AlbumInterface {
 
-    @GET("albums")
-    suspend fun getAlbums():Response<Albums>
+    @GET("album/1")
+    suspend fun getAlbum():Response<Albums>
 }
